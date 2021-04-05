@@ -1,20 +1,21 @@
 FROM ubuntu:groovy
 
-RUN apt-get update -qq \
-  && apt-get install -y -qq \
+RUN apt update -qq \
+  && apt install -y -qq \
     jq \
     apt-transport-https \
     ca-certificates \
     curl \
+    apt-utils \
     software-properties-common \
     dnsutils \
   && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
   && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu groovy stable" \
-  && apt-get update -qq \
-  && apt-get install -y -qq \
-    docker-ce=5:19.03.5* \
-  && apt-get -qq clean \
-  && apt-get autoremove -y \
+  && apt update -qq \
+  && apt install -y -qq \
+    docker-ce \
+  && apt  -qq clean \
+  && apt autoremove -y \
   && rm -rf \
     /var/lib/apt/lists/* \
     /tmp/* \
